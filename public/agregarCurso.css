@@ -1,0 +1,189 @@
+/* Estilos generales */
+body {
+    font-family: 'Montserrat', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: url('https://your-background-image-url.jpg') no-repeat center center fixed;
+    background-size: cover;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    color: #fff;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Estilos del encabezado */
+header {
+    display: flex;
+    background: #3498db;
+    /* Azul */
+    color: #fff;
+    text-align: center;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    height: 100vh;
+    align-items: center;
+}
+
+header h1 {
+    font-size: 2.5em;
+    margin: 0;
+}
+
+/* Estilos del formulario */
+form {
+    width: 60%;
+    max-width: 400px;
+    margin: 0 auto;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.4);
+    text-align: center;
+}
+
+label {
+    display: block;
+    margin: 10px 0 5px;
+    text-align: left;
+    font-weight: bold;
+    color: #333;
+}
+
+input,
+textarea {
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0 15px;
+    box-sizing: border-box;
+    border: 1px solid #3498db;
+    /* Azul */
+    border-radius: 5px;
+}
+
+button {
+    width: 100%;
+    margin: 10px 0;
+    padding: 12px;
+    text-decoration: none;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button[type="submit"] {
+    background-color: #3498db;
+    /* Azul */
+    color: #fff;
+}
+
+button.back-button {
+    background-color: #d9534f;
+    /* Rojo */
+    color: #fff;
+}
+
+button.confirm-button {
+    background-color: #ffc107;
+    /* Amarillo */
+    color: #212529;
+    /* Negro */
+}
+
+button:hover,
+button.back-button:hover {
+    background-color: #0056b3;
+    /* Azul oscuro */
+}
+
+button.confirm-button:hover {
+    background-color: #e0a800;
+    /* Amarillo oscuro */
+}
+
+/* Ventana modal mejorada */
+#confirmModal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+    /* Fondo negro transparente */
+}
+
+.modal-content {
+    background: #fff;
+    /* Fondo blanco */
+    margin: 15% auto;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
+    color: #333;
+    /* Texto principal oscuro */
+    width: 30%;
+}
+
+span.close {
+    color: #333;
+    /* Texto principal oscuro */
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+span.close:hover,
+span.close:focus {
+    color: #555;
+    /* Texto gris oscuro al pasar el mouse */
+}
+
+.confirm-message {
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+
+.buttons {
+    text-align: center;
+}
+
+#confirmButton,
+#cancelButton {
+    padding: 10px 20px;
+    margin: 5px;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+}
+
+#confirmButton {
+    background-color: #3498db;
+    /* Azul */
+    color: #fff;
+    /* Texto blanco */
+}
+
+#cancelButton {
+    background-color: #d9534f;
+    /* Rojo */
+    color: #fff;
+    /* Texto blanco */
+}
+
+#confirmButton:hover,
+#cancelButton:hover {
+    opacity: 0.8;
+    /* Cambiar opacidad al pasar el mouse */
+}

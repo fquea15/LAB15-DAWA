@@ -1,0 +1,83 @@
+doctype html
+html
+  head
+    title Agregar Curso
+    link(rel="stylesheet", href="/agregarCurso.css")
+  body
+    header
+      h1 Agregar Curso
+
+    // Formulario fuera del encabezado
+    form(action="/agregar/curso" method="POST" onsubmit="return confirmarAgregar();")
+      label(for="nuevoNombreCurso") Nombre del Curso:
+      input(type="text" name="nuevoNombreCurso" required)
+      small.error-message#nombreCursoError(style="color: red; display: none;") ¡Completa este campo!
+      br
+      label(for="nuevaDescripcionCurso") Descripción:
+      textarea(name="nuevaDescripcionCurso" rows="4" required)
+      small.error-message#descripcionCursoError(style="color: red; display: none;") ¡Completa este campo!
+      br
+      button(type="submit", onclick="return confirmarAgregar();") Agregar
+      button(type="button", onclick="location.href='/'", class="back-button") Volver
+
+      // Ventana modal mejorada
+      div#confirmModal.modal
+        div.modal-content
+          span.close &times;
+          p.confirm-message ¿Estás seguro de que deseas agregar este curso?
+          div.buttons
+            button#confirmButton Confirmar
+            button#cancelButton Cancelar
+
+      script.
+
+        function toggleModal() {
+          var modal = document.getElementById("confirmModal");
+          modal.style.display = modal.style.display === "block" ? "none" : "block";
+        }
+
+        
+        window.onclick = function(event) {
+          var modal = document.getElementById("confirmModal");
+          if (event.target === modal) {
+            modal.style.display = "none";
+          }
+        };
+
+        document.getElementById("confirmButton").onclick = function() {
+          toggleModal();
+          
+          document.querySelector("form").submit();
+        };
+
+        document.getElementById("cancelButton").onclick = function() {
+          toggleModal();
+          return false;
+        };
+
+        document.querySelector(".close").onclick = function() {
+          toggleModal();
+          return false;
+        };
+
+        function confirmarAgregar() {
+          
+          document.querySelectorAll('.error-message').forEach((element) => {
+            element.style.display = 'none';
+          });
+  
+          if (document.querySelector("form").checkValidity()) {
+            toggleModal();
+          } else {
+            
+            document.querySelectorAll("input:required, textarea:required").forEach((input) => {
+              if (!input.value) {
+                const errorId = `${input.name}Error`;
+                const errorElement = document.getElementById(errorId);
+                errorElement.style.display = 'block';
+              }
+            });
+          }
+
+          return false;
+        }

@@ -1,0 +1,170 @@
+body {
+  font-family: 'Arial', sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f4f4f4; /* Fondo gris claro */
+  color: #555; /* Texto principal oscuro */
+  display: flex;
+  height: 100vh; /* Altura completa de la ventana */
+}
+
+header {
+  background-color: #3498db; /* Azul */
+  color: #fff; /* Texto blanco */
+  text-align: center;
+  padding: 20px;
+  width: 20%; /* Ancho del sidebar */
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%; /* Altura completa */
+}
+
+header h1 {
+  font-size: 2.5em;
+  letter-spacing: 2px;
+  margin: 0;
+}
+
+.button-up,
+.button,
+.button-alt {
+  display: inline-block;
+  padding: 10px 20px;
+  margin: 10px;
+  text-decoration: none;
+  color: #fff; /* Color de texto blanco */
+  border-radius: 5px;
+}
+
+.button-up {
+  background-color: #3498db; /* Color azul */
+}
+
+.button {
+  background-color: #2ecc71; /* Color verde */
+}
+
+.button-alt {
+  background-color: #e74c3c; /* Color rojo */
+}
+
+.table-section {
+  width: 80%;
+  margin: 0 auto;
+}
+
+.table-section {
+  width: 80%; /* Ancho del contenido principal */
+  margin: 20px;
+  box-sizing: border-box;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th, td {
+  border: 1px solid #ddd;
+  padding: 15px;
+  text-align: left;
+}
+
+th {
+  background-color: #3498db; /* Azul */
+  color: #fff; /* Texto blanco */
+}
+
+tr:nth-child(even) {
+  background-color: #ecf0f1; /* Fondo gris claro para filas pares */
+}
+
+.btn-edit,
+.btn-delete {
+  padding: 10px;
+  margin: 5px;
+  cursor: pointer;
+  color: #fff; /* Texto blanco */
+  border: none;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.btn-edit {
+  background-color: #27ae60; /* Verde esmeralda */
+}
+
+.btn-delete {
+  background-color: #e74c3c; /* Rojo */
+}
+
+/* Estilos de la ventana modal */
+#confirmModal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.5); /* Fondo negro transparente */
+}
+
+.modal-content {
+  background: #fff; /* Fondo blanco */
+  margin: 15% auto;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
+  color: #555; /* Texto principal oscuro */
+  width: 30%;
+}
+
+.close {
+  color: #555; /* Texto principal oscuro */
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.close:hover,
+.close:focus {
+  color: #777; /* Gris oscuro al pasar el mouse */
+}
+
+.confirm-message {
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+
+.buttons {
+  text-align: center;
+}
+
+#confirmButton,
+#cancelButton {
+  padding: 10px 20px;
+  margin: 5px;
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
+}
+
+#confirmButton {
+  background-color: #27ae60; /* Verde esmeralda */
+  color: #fff; /* Texto blanco */
+}
+
+#cancelButton {
+  background-color: #e74c3c; /* Rojo */
+  color: #fff; /* Texto blanco */
+}
+
+#confirmButton:hover,
+#cancelButton:hover {
+  opacity: 0.8; /* Cambiar opacidad al pasar el mouse */
+}

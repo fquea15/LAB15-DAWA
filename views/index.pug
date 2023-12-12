@@ -1,0 +1,67 @@
+doctype html
+html
+  head
+    title Lista de Alumnos
+    link(rel="stylesheet" href="/index.css")  
+  body
+    header.animated
+      h1 Lista de Alumnos
+      a(href="/agregar/alumno" class="button") Agregar nuevo alumno
+      a(href="/agregar/curso" class="button-alt") Agregar nuevo curso
+    section.table-section.animated
+      table
+        thead
+          tr
+            th Nombre
+            th Edad
+            th Teléfono
+            th Correo
+            th Curso
+            th Acciones
+        tbody
+          each dato in datos
+            tr
+              td #{dato.nombre}
+              td #{dato.edad}
+              td #{dato.telefono}
+              td #{dato.correo}
+              td #{dato.nombre_curso}
+              td
+                button(type="button", onclick=`location.href='/editar/alumno/${dato.id}'`, class="btn-edit") Editar
+                button(type="button", onclick=`showDeleteModal(${dato.id}, '${dato.nombre}')`, class="btn-delete") Eliminar
+                form(id=`eliminarForm${dato.id}`, action=`/eliminar/alumno/${dato.id}`, method="POST" style="display:inline-block;")
+                  button(type="submit" style="display:none") Eliminar
+
+    #confirmModal
+      .modal-content
+        span.close &times;
+        p.confirm-message ¿Estás seguro de que deseas eliminar al alumno <span id="alumnoNombre"></span>?
+        .buttons
+          button#confirmButton Aceptar
+          button#cancelButton Cancelar
+
+    script.
+      function showDeleteModal(alumnoId, alumnoNombre) {
+        document.getElementById("alumnoNombre").innerText = alumnoNombre;
+        document.getElementById("confirmModal").style.display = "block";
+        document.getElementById("confirmButton").onclick = function() {
+          document.getElementById(`eliminarForm${alumnoId}`).submit();
+        };
+
+        document.getElementById("cancelButton").onclick = function() {
+          document.getElementById("confirmModal").style.display = "none";
+        };
+      }
+
+      var modal = document.getElementById("confirmModal");
+      var span = document.getElementsByClassName("close")[0];
+
+      span.onclick = function() {
+        modal.style.display = "none";
+      };
+
+      window.onclick = function(event) {
+        if (event.target === modal) {
+          modal.style.display = "none";
+        }
+      };

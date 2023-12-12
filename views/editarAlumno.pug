@@ -1,0 +1,106 @@
+doctype html
+html
+  head
+    title Editar Alumno
+    link(rel="stylesheet", href="/editarAlumno.css")
+  body
+    header
+      h1 Editar Alumno
+    form(action=`/editar/alumno/${alumno.id}` method="POST")
+      label(for="editarNombre") Nombre:
+      input(type="text" name="editarNombre" value=alumno.nombre required)
+      small.error-message#nombreError(style="color: red; display: none;") ¡Completa este campo!
+      br
+
+      label(for="editarEdad") Edad:
+      input(type="number" name="editarEdad" value=alumno.edad min="1" required)
+      small.error-message#edadError(style="color: red; display: none;") ¡Completa este campo!
+      br
+
+      label(for="editarTelefono") Teléfono:
+      input(type="text" name="editarTelefono" value=alumno.telefono pattern="[0-9]+" title="Ingrese un número válido" required)
+      small.error-message#telefonoError(style="color: red; display: none;") ¡Completa este campo!
+      br
+
+      label(for="editarCorreo") Correo:
+      input(type="email" name="editarCorreo" value=alumno.correo required)
+      small.error-message#correoError(style="color: red; display: none;") ¡Completa este campo!
+      br
+
+      label(for="editarIdCurso") Curso:
+      select(name="editarIdCurso" required)
+        each curso in cursos
+          option(value=curso.id, selected=curso.id === alumno.id_curso) #{curso.nombre_curso}
+      small.error-message#cursoError(style="color: red; display: none;") ¡Completa este campo!
+      br
+
+      button(type="submit", onclick="return confirmarEditar();") Actualizar
+      button(type="button", onclick="location.href='/'", class="back-button") Volver
+
+    // Ventana modal mejorada
+    div#confirmModal.modal
+      div.modal-content
+        span.close &times;
+        p.confirm-message ¿Estás seguro de que deseas actualizar este alumno?
+        div.buttons
+          button#confirmButton Confirmar
+          button#cancelButton Cancelar
+
+    script.
+      // Función para mostrar/ocultar la ventana modal
+      function toggleModal() {
+        var modal = document.getElementById("confirmModal");
+        modal.style.display = modal.style.display === "block" ? "none" : "block";
+      }
+
+      // Función para manejar el clic fuera de la ventana modal
+      window.onclick = function(event) {
+        var modal = document.getElementById("confirmModal");
+        if (event.target === modal) {
+          modal.style.display = "none";
+        }
+      };
+
+      // Función para manejar el clic en el botón "Aceptar"
+      document.getElementById("confirmButton").onclick = function() {
+        toggleModal();
+        // Aquí puedes agregar lógica adicional antes de enviar el formulario
+        document.querySelector("form").submit();
+      };
+
+      // Función para manejar el clic en el botón "Cancelar"
+      document.getElementById("cancelButton").onclick = function() {
+        toggleModal();
+        return false;
+      };
+
+      // Función para manejar el clic en el botón de cerrar
+      document.querySelector(".close").onclick = function() {
+        toggleModal();
+        return false;
+      };
+
+      // Función para mostrar la ventana modal al enviar el formulario
+      function confirmarEditar() {
+        // Resetear mensajes de error
+        document.querySelectorAll('.error-message').forEach((element) => {
+          element.style.display = 'none';
+        });
+
+        // Validar si el formulario es válido
+        if (document.querySelector("form").checkValidity()) {
+          toggleModal();
+        } else {
+          // Mostrar mensajes de error para campos no completados
+          document.querySelectorAll("input:required, select:required").forEach((input) => {
+            if (!input.value) {
+              const errorId = `${input.name}Error`;
+              const errorElement = document.getElementById(errorId);
+              errorElement.style.display = 'block';
+            }
+          });
+        }
+
+        // Evitar el envío del formulario directamente
+        return false;
+      }

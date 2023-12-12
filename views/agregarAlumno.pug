@@ -1,0 +1,101 @@
+doctype html
+html
+  head
+    title Agregar Alumno
+    link(rel="stylesheet", href="/agregarAlumno.css")
+  body
+    header
+      h1 Agregar Alumno
+
+    // Formulario fuera del encabezado
+    form(action="/agregar/alumno" method="POST" onsubmit="return confirmarAgregar();")
+      label(for="nuevoNombre") Nombre:
+      input(type="text" name="nuevoNombre" required)
+      small.error-message#nombreError(style="color: red; display: none;")
+      br
+      label(for="nuevaEdad") Edad:
+      input(type="number" name="nuevaEdad" min="1" required)
+      small.error-message#edadError(style="color: red; display: none;")
+      br
+      label(for="nuevoTelefono") Teléfono:
+      input(type="text" name="nuevoTelefono" pattern="[0-9]+" title="Ingrese un número válido" required)
+      small.error-message#telefonoError(style="color: red; display: none;")
+      br
+      label(for="nuevoCorreo") Correo:
+      input(type="email" name="nuevoCorreo" required)
+      small.error-message#correoError(style="color: red; display: none;")
+      br
+      label(for="idCurso") Curso:
+      select(name="idCurso" required)
+        option(value="" selected disabled) Seleccionar Curso
+        each curso in cursos
+          option(value=curso.id)= curso.nombre_curso
+      small.error-message#cursoError(style="color: red; display: none;")
+      br
+      button(type="submit", onclick="return confirmarAgregar();") Agregar
+      button(type="button", onclick="location.href='/'", class="back-button") Volver
+
+    // Ventana modal mejorada
+    div#confirmModal.modal
+      div.modal-content
+        span.close &times;
+        p.confirm-message ¿Estás seguro de que deseas agregar este alumno?
+        div.buttons
+          button#confirmButton Confirmar
+          button#cancelButton Cancelar
+
+    script.
+      function toggleModal() {
+        var modal = document.getElementById("confirmModal");
+        modal.style.display = modal.style.display === "block" ? "none" : "block";
+      }
+
+      window.onclick = function(event) {
+        var modal = document.getElementById("confirmModal");
+        if (event.target === modal) {
+          modal.style.display = "none";
+        }
+      };
+
+      document.getElementById("confirmButton").onclick = function() {
+        toggleModal();
+
+        document.querySelector("form").submit();
+      };
+
+      
+      document.getElementById("cancelButton").onclick = function() {
+        toggleModal();
+        return false;
+      };
+
+      
+      document.querySelector(".close").onclick = function() {
+        toggleModal();
+        return false;
+      };
+
+
+      function confirmarAgregar() {
+        
+        document.querySelectorAll('.error-message').forEach((element) => {
+          element.style.display = 'none';
+        });
+
+        
+        if (document.querySelector("form").checkValidity()) {
+          toggleModal();
+        } else {
+          
+          document.querySelectorAll("input:required, select:required").forEach((input) => {
+            if (!input.value) {
+              const errorId = `${input.name}Error`;
+              const errorElement = document.getElementById(errorId);
+              errorElement.style.display = 'block';
+            }
+          });
+        }
+
+        
+        return false;
+      }

@@ -1,0 +1,156 @@
+/* Estilos generales */
+body {
+  font-family: 'Arial', sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f4f4f4; /* Fondo gris claro */
+  color: #333; /* Texto principal oscuro */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+header {
+  background-color: #3498db; /* Fondo negro */
+  color: #fff; /* Texto blanco */
+  text-align: center;
+  padding: 20px;
+  width: 20%; /* Ancho del sidebar */
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  height: 100%; /* Altura completa */
+}
+
+h1 {
+  font-size: 2.5em;
+}
+
+form {
+  width: 80%;
+  max-width: 400px;
+  margin: 0 auto;
+  background-color: #fff; /* Fondo blanco */
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.4);
+  text-align: center;
+}
+
+label {
+  display: block;
+  margin: 10px 0 5px;
+  text-align: left;
+  font-weight: bold;
+  color: #333; /* Texto principal oscuro */
+}
+
+input,
+select {
+  width: calc(100% - 20px);
+  padding: 10px;
+  margin: 5px 0 15px;
+  box-sizing: border-box;
+  border: 1px solid #3498db; /* Azul */
+  border-radius: 5px;
+}
+
+button {
+  width: 48%;
+  margin: 10px 1%;
+  padding: 12px 20px;
+  text-decoration: none;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button[type="submit"] {
+  background-color: #3498db; /* Azul */
+  color: #fff; /* Texto blanco */
+}
+
+button.back-button {
+  background-color: #d9534f; /* Rojo */
+  color: #fff; /* Texto blanco */
+}
+
+button:hover,
+button.back-button:hover {
+  background-color: #3498db; /* Azul oscuro */
+}
+
+button.back-button:hover {
+  background-color: #c9302c; /* Rojo oscuro */
+}
+
+/* Ventana modal mejorada */
+#confirmModal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.5); /* Fondo negro transparente */
+}
+
+.modal-content {
+  background: #fff; /* Fondo blanco */
+  margin: 15% auto;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
+  color: #333; /* Texto principal oscuro */
+  width: 30%;
+}
+
+span.close {
+  color: #333; /* Texto principal oscuro */
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+span.close:hover,
+span.close:focus {
+  color: #555; /* Texto gris oscuro al pasar el mouse */
+}
+
+.confirm-message {
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+
+.buttons {
+  text-align: center;
+}
+
+#confirmButton,
+#cancelButton {
+  padding: 10px 20px;
+  margin: 5px;
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
+}
+
+#confirmButton {
+  background-color: #3498db; /* Azul */
+  color: #fff; /* Texto blanco */
+}
+
+#cancelButton {
+  background-color: #d9534f; /* Rojo */
+  color: #fff; /* Texto blanco */
+}
+
+#confirmButton:hover,
+#cancelButton:hover {
+  opacity: 0.8; /* Cambiar opacidad al pasar el mouse */
+}
